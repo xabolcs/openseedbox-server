@@ -1,7 +1,7 @@
 FROM openseedbox/client
 
 RUN apt-get -qq update \
-	&& apt-get install -qq -y transmission-daemon \
+	&& apt-get install -qq -y transmission-daemon rtorrent \
 	&& apt-get -y clean \
 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -18,3 +18,6 @@ COPY run.sh /run.sh
 COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 443
+
+ENTRYPOINT ["python", "/usr/bin/supervisord"]
+STOPSIGNAL SIGTERM

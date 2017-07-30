@@ -28,12 +28,10 @@ public class Status extends Base {
 		if (StringUtils.isEmpty(total_space)) {
 			total_space = "-1";
 		}
-		String base_dir = Config.getBackendBasePath();
-		boolean base_dir_writable = new File(base_dir).canWrite();
-				
+
 		ITorrentBackend backend = getBackend();
 		
-		result(new NodeStatus(uptime, Long.parseLong(free_space), Long.parseLong(total_space), base_dir, base_dir_writable, backend));
+		result(new NodeStatus(uptime, Long.parseLong(free_space), Long.parseLong(total_space), Config.getBackendBasePath(), backendBasePathWritable(), backend));
 	}
 	
 }

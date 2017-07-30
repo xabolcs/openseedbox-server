@@ -11,7 +11,7 @@ public class Config {
 	}	
 	
 	public static String getBackendBasePath() {
-		return Play.configuration.getProperty("backend.base.path", "/openseedbox");
+		return new File(Play.configuration.getProperty("backend.base.path", "/media/openseedbox"), getBackendClassName()).getAbsolutePath();
 	}
 	
 	public static boolean isBackendBasePathEncrypted() {

@@ -4,11 +4,20 @@ require:
     - play [1.3.4,1.4[
     - openseedbox-common -> openseedbox-common latest.integration
     - com.turn -> ttorrent-core 1.5:
-       transitive: false
+        transitive: false
+    - fr.turri -> aXMLRPC 1.11.0:
+        transitive: false
 
-repositories:          
+
+repositories:
     - localCheckout:
         type: local
         artifact: ${application.path}/../[module]
         contains:
           - openseedbox-common
+    - jitpack.io:
+        type: iBiblio
+        root: https://jitpack.io
+        contains:
+            - com.github.erickok
+            - com.github.gturri

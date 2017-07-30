@@ -44,8 +44,10 @@ public abstract class Base extends BaseController {
 	
 	protected static void checkDownloadLocations() {
 		String basePath = Config.getBackendBasePath();
-		if (!(new File(basePath).canWrite())) {
-			resultError("Backend base path '" + Config.getBackendBasePath() + "' isnt writable!");
+		if (!backendBasePathWritable()) {
+			if (!new File(basePath).mkdirs())  {
+				resultError("Backend base path '" + basePath + "' isnt writable!");
+			}
 		}
 		if (Config.isBackendBasePathEncrypted()) {
 			String is_mounted = Util.executeCommand(String.format("cat /proc/mounts | grep %s", basePath));
@@ -53,5 +55,9 @@ public abstract class Base extends BaseController {
 				resultError("Backend base path isnt mounted! Encryption probably isnt active!");
 			}		
 		}
-	}	
+	}
+
+	protected static boolean backendBasePathWritable() {
+		return new File(Config.getBackendBasePath()).canWrite();
+	}
 }

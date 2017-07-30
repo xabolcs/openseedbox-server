@@ -5,6 +5,8 @@ application.mode=dev
 application.secret=olHnjc5fXP8EIUAiEdi5EyrnjFbf9mZxxKBqnNdcpJhfGFHP514T4P44gYrBgwGV
 date.format=yyyy-MM-dd
 
+java.source=1.8
+
 #Http settings
 http.port=9001
 jpda.port=8001
